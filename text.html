@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<script>
+    $(document).ready(function(){
+        $(".button").click(function(){
+            var email=$('.email').val();
+            var verification=$('.verification').val();
+            var oldpassword=$('.oldpassword').val();
+            var password=$('.password').val();
+            var password_confirmation=$('.password_confirmation').val();
+
+            var nickname=$('.userName').val();
+            var firstName=$('.firstName').val();
+            var lastName=$('.lastName').val();
+            var address=$('.address').val();
+            var iso=$('.iso').val();
+            var phone=$('.phone').val();
+
+
+
+//            var role=$("input[name='role']:checked").serialize();
+
+            var role =[];//定义一个数组
+            $('input[name="role"]:checked').each(function(){//遍历每一个名字为interest的复选框，其中选中的执行函数
+                role.push($(this).val());//将选中的值添加到数组chk_value中
+            });
+
+            var token='hy6m5l+TuY7Vh3jSPzMFFLAAAhfmnfAZvH+IF0g465OT7upVK3dbXwbK7Q7Y+Wq0VyMzXPZ/mHW+xgWhp2twd55TyFAY0ThCasvLKQMpaEqsXc62OEh3zr6jtoDj1dUYbnAx9Z6sYy6v040k4BXlE1zQXKOwCf2efsHj24wnD+61qMOLSr6/npgeqBkGFAvq6vMFdoREocmrBE0eQ+Ass2IiPuZQLyY7xmOQ0hkjQPbEyaRCulP0T6YmGHtcF1eySGKzoUcNGCQy2NlfUGLZXt0t5dunozplB2kurHKkqZ23sD16pQwxp1WhDIzz9XPjky9nYC9lGCDtihZ3gbV9Ug==';
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/auth/register',
+//                data:{
+//                    "email":email,
+//                    "password":password,
+//                    "verification":verification,
+//                    "password_confirmation":password_confirmation,
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                    console.log(res);
+//                }
+//            })
+
+            //登录时验证邮箱
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/auth/login/verify_email',
+//                data:{
+//                    "email":email
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                    console.log(res);
+//                }
+//            })
+
+            //登录获取token
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/api/auth/login',
+//                data:{
+//                    "email":email,
+//                    "password":password
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                    console.log(res.token);
+//                }
+//            })
+
+            //修改密码
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/auth/change_password',
+//                data:{
+//                    "token":token,
+//                    "password":password,
+//                    "oldpassword":oldpassword,
+//                    "password_confirmation":password_confirmation
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                    console.log(res.token);
+//                }
+//            })
+
+            //获取用户列表
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/api/users/list?page=2&pageSize=10',
+//                data:{
+//                    "token":token
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                    console.log(res.token);
+//                }
+//            })
+
+            //获取当前用户信息
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/auth/me',
+//                data:{
+//                    "token":token,
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                    console.log(res.token);
+//                }
+//            })
+
+            //创建用户
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/api/users/create',
+//                data:{
+//                    "token":token,
+//                    "email":email,
+//                    "nickname":nickname,
+//                    "firstName":firstName,
+//                    "lastName":lastName,
+//                    "password":password
+//
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                }
+//            })
+
+            //修改用户
+            $.ajax({
+                type: "POST",
+                url:'http://127.0.0.1:8000/api/users/update',
+                data:{
+                    "token":token,
+                    "_id":"5b9622f2c3071f152800402d",
+                    "nickname":nickname,
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "address":address,
+                    "email":email,
+
+                },
+                dataType: "json",
+                success:function (res){
+                }
+            })
+
+            //修改用户的role权限
+//            $.ajax({
+//                type: "POST",
+//                url:'http://127.0.0.1:8000/api/users/updateRole',
+//                data:{
+//                    "token":token,
+//                    "_id":"5b9622f2c3071f152800402d",
+//                    "role":role,
+//                },
+//                dataType: "json",
+//                success:function (res){
+//                }
+//            })
+
+        })
+    })
+</script>
+<form method="post">
+    <input placeholder="email" class="email">
+    <input placeholder="verification" class="verification">
+    <input placeholder="oldpassword" class="oldpassword">
+    <input placeholder="password" class="password">
+    <input placeholder="password_confirmation" class="password_confirmation">
+    <br>
+    <input placeholder="userName" class="userName">
+    <input placeholder="firstName" class="firstName">
+    <input placeholder="lastName" class="lastName">
+    <input placeholder="address" class="address">
+
+    <br>
+    <input placeholder="iso" class="iso">
+    <input placeholder="phone" class="phone">
+    <input placeholder="avatar" class="avatar">
+    <br>
+    <label><input name="role" type="checkbox" value="admin" />admin </label>
+    <label><input name="role" type="checkbox" value="staff" />staff </label>
+    <label><input name="role" type="checkbox" value="user" />user </label>
+    <button type="button" class="button">submit</button>
+</form>
+</body>
+</html>
